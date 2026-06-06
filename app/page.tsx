@@ -889,9 +889,28 @@ const SLIDES = [
     bg: 'bg-gradient-to-br from-slate-50 via-white to-purple-50',
   },
 
-  // ─── 12. EXECUTIVE SUMMARY ──────────────────────────────────
+  // ─── 12. DISCLAIMER ─────────────────────────────────────────
   {
-    id: 12, section: 'SUMMARY', title: 'Executive Summary',
+    id: 12, section: 'DISCLAIMER', title: 'Disclaimer',
+    render: (active: boolean) => (
+      <div className="flex flex-col items-center justify-center h-full text-center px-6 md:px-16">
+        <Stagger delay={0} active={active}>
+          <div className="bg-amber-50 rounded-2xl p-8 border border-amber-200 max-w-2xl hover:shadow-lg transition-shadow duration-300">
+            <div className="text-5xl mb-4 animate-bounce">⚠️</div>
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">Important Disclaimer</h2>
+            <p className="text-slate-700 leading-relaxed">
+              The data provided is a representation of the original data which amount has been adjusted. The data used is <strong>NOT</strong> representation of original data, adjusted for educational purposes and does not reflect the actual business condition of the company.
+            </p>
+          </div>
+        </Stagger>
+      </div>
+    ),
+    bg: 'bg-gradient-to-br from-slate-50 via-white to-amber-50',
+  },
+
+  // ─── 13. EXECUTIVE SUMMARY ──────────────────────────────────
+  {
+    id: 13, section: 'SUMMARY', title: 'Executive Summary',
     render: (active: boolean) => (
       <div className="h-full flex flex-col justify-center px-6 md:px-16">
         <Stagger delay={0} active={active}>
@@ -936,25 +955,6 @@ const SLIDES = [
       </div>
     ),
     bg: 'bg-gradient-to-br from-slate-50 via-white to-blue-50',
-  },
-
-  // ─── 13. DISCLAIMER ─────────────────────────────────────────
-  {
-    id: 13, section: 'DISCLAIMER', title: 'Disclaimer',
-    render: (active: boolean) => (
-      <div className="flex flex-col items-center justify-center h-full text-center px-6 md:px-16">
-        <Stagger delay={0} active={active}>
-          <div className="bg-amber-50 rounded-2xl p-8 border border-amber-200 max-w-2xl hover:shadow-lg transition-shadow duration-300">
-            <div className="text-5xl mb-4 animate-bounce">⚠️</div>
-            <h2 className="text-2xl font-bold text-slate-900 mb-4">Important Disclaimer</h2>
-            <p className="text-slate-700 leading-relaxed">
-              The data provided is a representation of the original data which amount has been adjusted. The data used is <strong>NOT</strong> representation of original data, adjusted for educational purposes and does not reflect the actual business condition of the company.
-            </p>
-          </div>
-        </Stagger>
-      </div>
-    ),
-    bg: 'bg-gradient-to-br from-slate-50 via-white to-amber-50',
   },
 
   // ─── 14. CONTACT ────────────────────────────────────────────
