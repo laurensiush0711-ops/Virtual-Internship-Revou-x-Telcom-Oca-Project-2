@@ -153,17 +153,19 @@ function BarChart({ data, active = true, maxVal }: {
   return (
     <div className="flex items-end gap-3 h-40">
       {data.map((d, i) => (
-        <div key={i} className="flex-1 flex flex-col items-center gap-1">
-          <Tooltip text={`${d.label}: ${d.value.toLocaleString()}`}>
-            <div
-              className="w-full rounded-t-lg transition-all duration-700 ease-out cursor-pointer hover:opacity-80"
-              style={{
-                height: active ? `${(d.value / max) * 100}%` : '0%',
-                backgroundColor: d.color,
-                transitionDelay: `${i * 150}ms`,
-              }}
-            />
-          </Tooltip>
+        <div key={i} className="flex-1 flex flex-col items-center gap-1 h-full">
+          <div className="flex-1 w-full flex items-end">
+            <Tooltip text={`${d.label}: ${d.value.toLocaleString()}`}>
+              <div
+                className="w-full rounded-t-lg transition-all duration-700 ease-out cursor-pointer hover:opacity-80"
+                style={{
+                  height: active ? `${(d.value / max) * 100}%` : '0%',
+                  backgroundColor: d.color,
+                  transitionDelay: `${i * 150}ms`,
+                }}
+              />
+            </Tooltip>
+          </div>
           <span className="text-[10px] text-slate-500 text-center leading-tight">{d.label}</span>
         </div>
       ))}
@@ -215,8 +217,8 @@ function InsightCard({ num, title, desc, color, icon, delay, active }: {
   num: string; title: string; desc: string; color: string; icon: string; delay: number; active: boolean
 }) {
   const [expanded, setExpanded] = useState(false)
-  const borderColor = { green: 'border-green-200 hover:border-green-300', blue: 'border-blue-200 hover:border-blue-300', purple: 'border-purple-200 hover:border-purple-300', amber: 'border-amber-200 hover:border-amber-300' }[color]
-  const bgHover = { green: 'hover:bg-green-50/50', blue: 'hover:bg-blue-50/50', purple: 'hover:bg-purple-50/50', amber: 'hover:bg-amber-50/50' }[color]
+  const borderColor = { green: 'border-green-200 hover:border-green-300', blue: 'border-blue-200 hover:border-blue-300', purple: 'border-purple-200 hover:border-purple-300', amber: 'border-amber-200 hover:border-amber-300', red: 'border-red-200 hover:border-red-300' }[color]
+  const bgHover = { green: 'hover:bg-green-50/50', blue: 'hover:bg-blue-50/50', purple: 'hover:bg-purple-50/50', amber: 'hover:bg-amber-50/50', red: 'hover:bg-red-50/50' }[color]
 
   return (
     <Stagger delay={delay} active={active}>
@@ -330,7 +332,7 @@ function TVMatrix({ active }: { active: boolean }) {
   ]
 
   return (
-    <div className="grid grid-cols-3 gap-2 max-w-md mx-auto">
+    <div className="grid grid-cols-3 gap-2.5 max-w-lg mx-auto">
       {matrix.map((cell) => {
         const key = `${cell.t}-${cell.v}`
         const isHovered = hoveredCell === key
@@ -338,7 +340,7 @@ function TVMatrix({ active }: { active: boolean }) {
         return (
           <div
             key={key}
-            className={`rounded-xl border-2 p-3 text-center transition-all duration-300 cursor-pointer ${
+            className={`rounded-xl border-2 p-4 text-center aspect-square flex flex-col items-center justify-center transition-all duration-300 cursor-pointer ${
               active ? cell.color : 'bg-slate-50 border-slate-200 text-slate-400'
             } ${isHovered ? 'scale-105 shadow-lg ring-2 ring-blue-300' : ''} ${hasUsers && active ? 'hover:shadow-md' : 'opacity-40'}`}
             onMouseEnter={() => setHoveredCell(key)}
@@ -347,7 +349,7 @@ function TVMatrix({ active }: { active: boolean }) {
             <div className="text-[10px] font-mono text-slate-400 mb-1">T={cell.t} V={cell.v}</div>
             <div className="text-xs font-semibold">{cell.label}</div>
             {hasUsers && active && (
-              <div className="mt-1 text-lg font-bold">{cell.count}</div>
+              <div className="mt-1 text-xl font-bold">{cell.count}</div>
             )}
           </div>
         )
@@ -404,7 +406,7 @@ const SLIDES = [
       <div className="flex flex-col items-center justify-center h-full text-center px-4 relative">
         <Particles />
         <Stagger delay={0} active={active}>
-          <p className="text-sm font-medium text-blue-600 tracking-widest uppercase mb-4">RevoU x Telkom Indonesia — Project 2</p>
+          <p className="text-sm font-medium text-blue-600 tracking-widest uppercase mb-4">Virtual Internship in: RevoU x Telkom Indonesia — Project 2</p>
         </Stagger>
         <Stagger delay={100} active={active}>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-4 leading-tight">
@@ -412,8 +414,11 @@ const SLIDES = [
           </h1>
         </Stagger>
         <Stagger delay={200} active={active}>
-          <p className="text-lg md:text-xl text-slate-500 mb-8 max-w-2xl">
-            Rule-based T-V framework for churn detection and upsell strategy across 20 OCA clients
+          <p className="text-lg md:text-xl text-slate-700 font-medium mb-2 max-w-2xl">
+            Active User Behavior &amp; Segmentation
+          </p>
+          <p className="text-base text-slate-500 mb-8 max-w-2xl">
+            by Laurensius Haryo R. P
           </p>
         </Stagger>
         <Stagger delay={350} active={active}>
@@ -507,11 +512,10 @@ const SLIDES = [
             </blockquote>
           </div>
         </Stagger>
-        <div className="grid md:grid-cols-3 gap-4">
+        <div className="grid md:grid-cols-2 gap-4">
           {[
             { icon: '🚨', title: 'Revenue Concentration', desc: '3 users = 59.9% of platform revenue. All 3 declining.', color: 'red', delay: 200 },
-            { icon: '📉', title: 'Universal Decline', desc: '18 of 20 users (90%) showed declining volume Jan→Mar 2025.', color: 'amber', delay: 300 },
-            { icon: '🎯', title: 'No Action Framework', desc: 'Without segmentation, Account Managers cannot prioritize outreach.', color: 'blue', delay: 400 },
+            { icon: '🎯', title: 'No Action Framework', desc: 'Without segmentation, Account Managers cannot prioritize outreach.', color: 'blue', delay: 300 },
           ].map((item) => (
             <Stagger key={item.title} delay={item.delay} active={active}>
               <Tooltip text={`Click to learn more about ${item.title.toLowerCase()}`}>
@@ -559,9 +563,49 @@ const SLIDES = [
     bg: 'bg-gradient-to-br from-slate-50 via-white to-indigo-50',
   },
 
-  // ─── 5. DATASET SCOPE ──────────────────────────────────────
+  // ─── 5. ROOT CAUSE ANALYSIS ────────────────────────────────
   {
-    id: 5, section: 'DATA', title: 'Dataset Scope',
+    id: 5, section: 'ANALYSIS', title: 'Root Cause Analysis',
+    render: (active: boolean) => (
+      <div className="h-full flex flex-col justify-center px-6 md:px-16">
+        <Stagger delay={0} active={active}>
+          <p className="text-sm font-medium text-orange-600 tracking-widest uppercase mb-2">Root Cause Analysis</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-5">Why Are Users Declining?</h2>
+        </Stagger>
+        <div className="grid md:grid-cols-3 gap-4 mb-4">
+          {[
+            { icon: '📅', title: 'Seasonality', desc: 'Post-New Year normalization + pre-Ramadan shift. January peak was likely campaign-driven, not organic growth.', color: 'amber', delay: 100, evidence: 'All 20 users peaked in Jan, declined uniformly by 25–32%' },
+            { icon: '📊', title: 'Campaign Wind-Down', desc: 'Q1 marketing push in January tapers off naturally. Transaction volume follows campaign budget cycles.', color: 'blue', delay: 200, evidence: 'Decline is uniform across industries — not sector-specific' },
+            { icon: '🏢', title: 'Industry Concentration', desc: '2 users in Travel and Real Estate held steady. Their use cases may be less campaign-dependent.', color: 'green', delay: 300, evidence: 'CV Jalan Mandiri (Travel) and PT Edu Mandiri (Education) bucked the trend' },
+          ].map((item) => (
+            <Stagger key={item.title} delay={item.delay} active={active}>
+              <div className="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 h-full">
+                <div className="text-3xl mb-3">{item.icon}</div>
+                <h3 className="font-semibold text-lg text-slate-800 mb-2">{item.title}</h3>
+                <p className="text-sm text-slate-600 mb-3">{item.desc}</p>
+                <div className="bg-amber-50 rounded-xl p-3 border border-amber-100">
+                  <p className="text-xs text-amber-700"><strong>Evidence:</strong> {item.evidence}</p>
+                </div>
+              </div>
+            </Stagger>
+          ))}
+        </div>
+        <Stagger delay={400} active={active}>
+          <div className="bg-white rounded-2xl p-4 shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+            <div className="flex items-center gap-3">
+              <span className="text-2xl">🔍</span>
+              <p className="text-sm text-slate-700"><strong>Conclusion:</strong> The uniform decline pattern (25–32% across 90% of users) strongly suggests an external factor — likely seasonality — rather than platform issues or individual churn risk.</p>
+            </div>
+          </div>
+        </Stagger>
+      </div>
+    ),
+    bg: 'bg-gradient-to-br from-slate-50 via-white to-orange-50',
+  },
+
+  // ─── 6. DATASET SCOPE ──────────────────────────────────────
+  {
+    id: 6, section: 'DATA', title: 'Dataset Scope',
     render: (active: boolean) => (
       <div className="h-full flex flex-col justify-center px-6 md:px-16">
         <Stagger delay={0} active={active}>
@@ -629,9 +673,9 @@ const SLIDES = [
     bg: 'bg-gradient-to-br from-slate-50 via-white to-purple-50',
   },
 
-  // ─── 6. METHODOLOGY — T-V FRAMEWORK ─────────────────────────
+  // ─── 7. METHODOLOGY — T-V FRAMEWORK ─────────────────────────
   {
-    id: 6, section: 'METHODOLOGY', title: 'T-V Framework',
+    id: 7, section: 'METHODOLOGY', title: 'T-V Framework',
     render: (active: boolean) => (
       <div className="h-full flex flex-col justify-center px-6 md:px-16">
         <Stagger delay={0} active={active}>
@@ -687,8 +731,9 @@ const SLIDES = [
           </Stagger>
         </div>
         <Stagger delay={350} active={active}>
-          <div className="bg-slate-900 rounded-2xl p-5 text-green-400 font-mono text-xs leading-relaxed hover:bg-slate-800 transition-colors">
-            <div className="text-slate-400 mb-2">// Interactive Decision Tree — hover cells below</div>
+          <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+            <div className="text-sm font-semibold text-slate-700 mb-1">Interactive Decision Matrix</div>
+            <div className="text-xs text-slate-400 mb-3">Hover cells to explore segment labels and user counts</div>
             <TVMatrix active={active} />
           </div>
         </Stagger>
@@ -697,9 +742,9 @@ const SLIDES = [
     bg: 'bg-gradient-to-br from-slate-50 via-white to-green-50',
   },
 
-  // ─── 7. SEGMENTATION RESULTS ────────────────────────────────
+  // ─── 8. SEGMENTATION RESULTS ────────────────────────────────
   {
-    id: 7, section: 'RESULTS', title: 'Segmentation Results',
+    id: 8, section: 'RESULTS', title: 'Segmentation Results',
     render: (active: boolean) => (
       <div className="h-full flex flex-col justify-center px-6 md:px-16">
         <Stagger delay={0} active={active}>
@@ -765,9 +810,9 @@ const SLIDES = [
     bg: 'bg-gradient-to-br from-slate-50 via-white to-blue-50',
   },
 
-  // ─── 8. ANCHOR USERS AT RISK ────────────────────────────────
+  // ─── 9. ANCHOR USERS AT RISK ────────────────────────────────
   {
-    id: 8, section: 'RESULTS', title: 'Anchor Users at Risk',
+    id: 9, section: 'RESULTS', title: 'Anchor Users at Risk',
     render: (active: boolean) => (
       <div className="h-full flex flex-col justify-center px-6 md:px-16">
         <Stagger delay={0} active={active}>
@@ -803,29 +848,30 @@ const SLIDES = [
     bg: 'bg-gradient-to-br from-slate-50 via-white to-red-50',
   },
 
-  // ─── 9. KEY INSIGHTS ────────────────────────────────────────
+  // ─── 10. KEY INSIGHTS ────────────────────────────────────────
   {
-    id: 9, section: 'INSIGHTS', title: 'Key Insights',
+    id: 10, section: 'INSIGHTS', title: 'Key Insights',
     render: (active: boolean) => (
       <div className="h-full flex flex-col justify-center px-6 md:px-16">
         <Stagger delay={0} active={active}>
           <p className="text-sm font-medium text-green-600 tracking-widest uppercase mb-2">Insights</p>
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-5">Key Findings <span className="text-base font-normal text-slate-400">(click to expand)</span></h2>
         </Stagger>
-        <div className="grid md:grid-cols-2 gap-3">
+        <div className="grid md:grid-cols-3 gap-3">
           <InsightCard num="01" title="Platform Stickiness is Real" desc="All 20 users active every day for 90 consecutive days. Volume declining but engagement is not." color="green" icon="✅" delay={100} active={active} />
           <InsightCard num="02" title="January Was the Peak" desc="Every single user peaked in January. Post-New Year + pre-Ramadan seasonality likely driver." color="blue" icon="📊" delay={200} active={active} />
           <InsightCard num="03" title="Two Users Bucked the Trend" desc="CV Jalan Mandiri (Steady) and PT Edu Mandiri (Resilient) held volume while 18 others declined." color="purple" icon="🌟" delay={300} active={active} />
           <InsightCard num="04" title="Decline is Nearly Uniform" desc="15 of 18 declining users fell 25–32%. Uniform rates suggest shared external cause." color="amber" icon="🔍" delay={400} active={active} />
+          <InsightCard num="05" title="Decline is Nearly Universal" desc="18 of 20 users (90%) showed declining volume Jan→Mar 2025. Decline rates cluster tightly at 25–32%." color="red" icon="📉" delay={500} active={active} />
         </div>
       </div>
     ),
     bg: 'bg-gradient-to-br from-slate-50 via-white to-green-50',
   },
 
-  // ─── 10. RECOMMENDATIONS ────────────────────────────────────
+  // ─── 11. RECOMMENDATIONS ────────────────────────────────────
   {
-    id: 10, section: 'RECOMMENDATIONS', title: 'Recommendations',
+    id: 11, section: 'RECOMMENDATIONS', title: 'Recommendations',
     render: (active: boolean) => (
       <div className="h-full flex flex-col justify-center px-6 md:px-16">
         <Stagger delay={0} active={active}>
@@ -843,9 +889,58 @@ const SLIDES = [
     bg: 'bg-gradient-to-br from-slate-50 via-white to-purple-50',
   },
 
-  // ─── 11. DISCLAIMER ─────────────────────────────────────────
+  // ─── 12. EXECUTIVE SUMMARY ──────────────────────────────────
   {
-    id: 11, section: 'DISCLAIMER', title: 'Disclaimer',
+    id: 12, section: 'SUMMARY', title: 'Executive Summary',
+    render: (active: boolean) => (
+      <div className="h-full flex flex-col justify-center px-6 md:px-16">
+        <Stagger delay={0} active={active}>
+          <p className="text-sm font-medium text-blue-600 tracking-widest uppercase mb-2">Executive Summary</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-5">Key Takeaways</h2>
+        </Stagger>
+        <div className="grid md:grid-cols-2 gap-4 mb-4">
+          <Stagger delay={100} active={active}>
+            <div className="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 h-full">
+              <h3 className="font-semibold text-lg text-slate-800 mb-3 flex items-center gap-2"><span className="text-xl">📊</span> What We Found</h3>
+              <ul className="space-y-2 text-sm text-slate-600">
+                <li className="flex items-start gap-2"><span className="text-green-500 mt-1">✓</span>All 20 users are active every day — engagement is not the problem</li>
+                <li className="flex items-start gap-2"><span className="text-red-500 mt-1">✗</span>18 of 20 users showed 25–32% volume decline Jan→Mar</li>
+                <li className="flex items-start gap-2"><span className="text-red-500 mt-1">✗</span>3 anchor users (59.9% revenue) are all declining</li>
+                <li className="flex items-start gap-2"><span className="text-blue-500 mt-1">→</span>Decline pattern is uniform — likely seasonal, not platform-driven</li>
+              </ul>
+            </div>
+          </Stagger>
+          <Stagger delay={200} active={active}>
+            <div className="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 h-full">
+              <h3 className="font-semibold text-lg text-slate-800 mb-3 flex items-center gap-2"><span className="text-xl">🎯</span> What We Recommend</h3>
+              <ul className="space-y-2 text-sm text-slate-600">
+                <li className="flex items-start gap-2"><span className="text-red-500 font-bold">P0</span>Protect 3 anchor users — personal AM calls within 24h</li>
+                <li className="flex items-start gap-2"><span className="text-amber-500 font-bold">P1</span>Stabilize 5 significant users — AM review within 1 week</li>
+                <li className="flex items-start gap-2"><span className="text-orange-500 font-bold">P2</span>Recover 10 emerging users — automated check-in + resources</li>
+                <li className="flex items-start gap-2"><span className="text-green-500 font-bold">P3</span>Watch 2 resilient users — low-touch maintenance</li>
+              </ul>
+            </div>
+          </Stagger>
+        </div>
+        <Stagger delay={350} active={active}>
+          <div className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl p-5 border border-blue-200 hover:shadow-md transition-shadow">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-semibold text-slate-800 mb-1">Expected Impact</p>
+                <p className="text-xs text-slate-600">Targeted outreach to 3 anchor users could protect <strong>59.9% of platform revenue</strong> from potential churn.</p>
+              </div>
+              <div className="text-4xl font-bold text-blue-600">59.9%</div>
+            </div>
+          </div>
+        </Stagger>
+      </div>
+    ),
+    bg: 'bg-gradient-to-br from-slate-50 via-white to-blue-50',
+  },
+
+  // ─── 13. DISCLAIMER ─────────────────────────────────────────
+  {
+    id: 13, section: 'DISCLAIMER', title: 'Disclaimer',
     render: (active: boolean) => (
       <div className="flex flex-col items-center justify-center h-full text-center px-6 md:px-16">
         <Stagger delay={0} active={active}>
@@ -862,9 +957,9 @@ const SLIDES = [
     bg: 'bg-gradient-to-br from-slate-50 via-white to-amber-50',
   },
 
-  // ─── 12. CONTACT ────────────────────────────────────────────
+  // ─── 14. CONTACT ────────────────────────────────────────────
   {
-    id: 12, section: 'CONTACT', title: 'Contact',
+    id: 14, section: 'CONTACT', title: 'Contact',
     render: (active: boolean) => (
       <div className="flex flex-col items-center justify-center h-full text-center px-6 md:px-16">
         <Stagger delay={0} active={active}>
@@ -903,7 +998,7 @@ const SLIDES = [
   },
 ]
 
-const SECTIONS = ['ALL', 'INTRO', 'CONTEXT', 'PROBLEM', 'OBJECTIVES', 'DATA', 'METHODOLOGY', 'RESULTS', 'INSIGHTS', 'RECOMMENDATIONS', 'DISCLAIMER', 'CONTACT']
+const SECTIONS = ['ALL', 'INTRO', 'CONTEXT', 'PROBLEM', 'OBJECTIVES', 'ANALYSIS', 'DATA', 'METHODOLOGY', 'RESULTS', 'INSIGHTS', 'RECOMMENDATIONS', 'SUMMARY', 'DISCLAIMER', 'CONTACT']
 
 export default function SlidePresentation() {
   const [current, setCurrent] = useState(0)
@@ -963,7 +1058,7 @@ export default function SlidePresentation() {
     >
       {/* Logo — top-left on every slide */}
       <div className="fixed top-4 left-5 z-50 hover:scale-105 transition-transform duration-300 cursor-pointer">
-        <Image src="/logo.png" alt="RevoU x OCA x Telkom" width={120} height={40} className="h-10 w-auto" priority />
+        <Image src="/logo.png" alt="RevoU x OCA x Telkom" width={180} height={60} className="h-14 w-auto" priority />
       </div>
 
       {/* Progress bar */}
@@ -1039,6 +1134,13 @@ export default function SlidePresentation() {
             Next →
           </button>
         </div>
+      </div>
+
+      {/* Disclaimer footer — every slide */}
+      <div className="fixed bottom-14 left-0 right-0 z-30 text-center pointer-events-none">
+        <span className="text-[9px] text-slate-400 bg-white/60 backdrop-blur-sm px-3 py-1 rounded-full border border-slate-100">
+          Data adjusted for educational purposes — not representative of actual business conditions
+        </span>
       </div>
 
       {/* Keyboard hints */}
