@@ -1058,7 +1058,7 @@ export default function SlidePresentation() {
     >
       {/* Logo — top-left on every slide */}
       <div className="fixed top-4 left-5 z-50 hover:scale-105 transition-transform duration-300 cursor-pointer">
-        <Image src="/logo.png" alt="RevoU x OCA x Telkom" width={180} height={60} className="h-14 w-auto" priority />
+        <Image src="/logo.png" alt="RevoU x OCA x Telkom" width={480} height={160} className="h-40 w-auto" priority />
       </div>
 
       {/* Progress bar */}
