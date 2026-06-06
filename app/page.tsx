@@ -443,9 +443,77 @@ const SLIDES = [
     bg: 'bg-gradient-to-br from-slate-50 via-white to-blue-50',
   },
 
-  // ─── 2. BUSINESS BACKGROUND ─────────────────────────────────
+  // ─── 2. DISCLAIMER ─────────────────────────────────────────
   {
-    id: 2, section: 'CONTEXT', title: 'Business Background',
+    id: 2, section: 'DISCLAIMER', title: 'Disclaimer',
+    render: (active: boolean) => (
+      <div className="flex flex-col items-center justify-center h-full text-center px-6 md:px-16">
+        <Stagger delay={0} active={active}>
+          <div className="bg-amber-50 rounded-2xl p-8 border border-amber-200 max-w-2xl hover:shadow-lg transition-shadow duration-300">
+            <div className="text-5xl mb-4 animate-bounce">⚠️</div>
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">Important Disclaimer</h2>
+            <p className="text-slate-700 leading-relaxed">
+              The data provided is a representation of the original data which amount has been adjusted. The data used is <strong>NOT</strong> representation of original data, adjusted for educational purposes and does not reflect the actual business condition of the company.
+            </p>
+          </div>
+        </Stagger>
+      </div>
+    ),
+    bg: 'bg-gradient-to-br from-slate-50 via-white to-amber-50',
+  },
+
+  // ─── 3. EXECUTIVE SUMMARY ──────────────────────────────────
+  {
+    id: 3, section: 'SUMMARY', title: 'Executive Summary',
+    render: (active: boolean) => (
+      <div className="h-full flex flex-col justify-center px-6 md:px-16">
+        <Stagger delay={0} active={active}>
+          <p className="text-sm font-medium text-blue-600 tracking-widest uppercase mb-2">Executive Summary</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-5">Key Takeaways</h2>
+        </Stagger>
+        <div className="grid md:grid-cols-2 gap-4 mb-4">
+          <Stagger delay={100} active={active}>
+            <div className="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 h-full">
+              <h3 className="font-semibold text-lg text-slate-800 mb-3 flex items-center gap-2"><span className="text-xl">📊</span> What We Found</h3>
+              <ul className="space-y-2 text-sm text-slate-600">
+                <li className="flex items-start gap-2"><span className="text-green-500 mt-1">✓</span>All 20 users are active every day — engagement is not the problem</li>
+                <li className="flex items-start gap-2"><span className="text-red-500 mt-1">✗</span>18 of 20 users showed 25–32% volume decline Jan→Mar</li>
+                <li className="flex items-start gap-2"><span className="text-red-500 mt-1">✗</span>3 anchor users (59.9% revenue) are all declining</li>
+                <li className="flex items-start gap-2"><span className="text-blue-500 mt-1">→</span>Decline pattern is uniform — likely seasonal, not platform-driven</li>
+              </ul>
+            </div>
+          </Stagger>
+          <Stagger delay={200} active={active}>
+            <div className="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 h-full">
+              <h3 className="font-semibold text-lg text-slate-800 mb-3 flex items-center gap-2"><span className="text-xl">🎯</span> What We Recommend</h3>
+              <ul className="space-y-2 text-sm text-slate-600">
+                <li className="flex items-start gap-2"><span className="text-red-500 font-bold">P0</span>Protect 3 anchor users — personal AM calls within 24h</li>
+                <li className="flex items-start gap-2"><span className="text-amber-500 font-bold">P1</span>Stabilize 5 significant users — AM review within 1 week</li>
+                <li className="flex items-start gap-2"><span className="text-orange-500 font-bold">P2</span>Recover 10 emerging users — automated check-in + resources</li>
+                <li className="flex items-start gap-2"><span className="text-green-500 font-bold">P3</span>Watch 2 resilient users — low-touch maintenance</li>
+              </ul>
+            </div>
+          </Stagger>
+        </div>
+        <Stagger delay={350} active={active}>
+          <div className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl p-5 border border-blue-200 hover:shadow-md transition-shadow">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-semibold text-slate-800 mb-1">Expected Impact</p>
+                <p className="text-xs text-slate-600">Targeted outreach to 3 anchor users could protect <strong>59.9% of platform revenue</strong> from potential churn.</p>
+              </div>
+              <div className="text-4xl font-bold text-blue-600">59.9%</div>
+            </div>
+          </div>
+        </Stagger>
+      </div>
+    ),
+    bg: 'bg-gradient-to-br from-slate-50 via-white to-blue-50',
+  },
+
+  // ─── 4. BUSINESS BACKGROUND ─────────────────────────────────
+  {
+    id: 4, section: 'CONTEXT', title: 'Business Background',
     render: (active: boolean) => (
       <div className="h-full flex flex-col justify-center px-6 md:px-16">
         <Stagger delay={0} active={active}>
@@ -496,9 +564,9 @@ const SLIDES = [
     bg: 'bg-gradient-to-br from-slate-50 via-white to-blue-50',
   },
 
-  // ─── 3. BUSINESS PROBLEM ────────────────────────────────────
+  // ─── 5. BUSINESS PROBLEM ────────────────────────────────────
   {
-    id: 3, section: 'PROBLEM', title: 'Business Problem',
+    id: 5, section: 'PROBLEM', title: 'Business Problem',
     render: (active: boolean) => (
       <div className="h-full flex flex-col justify-center px-6 md:px-16">
         <Stagger delay={0} active={active}>
@@ -533,9 +601,9 @@ const SLIDES = [
     bg: 'bg-gradient-to-br from-slate-50 via-white to-red-50',
   },
 
-  // ─── 4. ANALYSIS OBJECTIVES ─────────────────────────────────
+  // ─── 6. ANALYSIS OBJECTIVES ─────────────────────────────────
   {
-    id: 4, section: 'OBJECTIVES', title: 'Analysis Objectives',
+    id: 6, section: 'OBJECTIVES', title: 'Analysis Objectives',
     render: (active: boolean) => (
       <div className="h-full flex flex-col justify-center px-6 md:px-16">
         <Stagger delay={0} active={active}>
@@ -563,9 +631,9 @@ const SLIDES = [
     bg: 'bg-gradient-to-br from-slate-50 via-white to-indigo-50',
   },
 
-  // ─── 5. ROOT CAUSE ANALYSIS ────────────────────────────────
+  // ─── 7. ROOT CAUSE ANALYSIS ────────────────────────────────
   {
-    id: 5, section: 'ANALYSIS', title: 'Root Cause Analysis',
+    id: 7, section: 'ANALYSIS', title: 'Root Cause Analysis',
     render: (active: boolean) => (
       <div className="h-full flex flex-col justify-center px-6 md:px-16">
         <Stagger delay={0} active={active}>
@@ -603,9 +671,9 @@ const SLIDES = [
     bg: 'bg-gradient-to-br from-slate-50 via-white to-orange-50',
   },
 
-  // ─── 6. DATASET SCOPE ──────────────────────────────────────
+  // ─── 8. DATASET SCOPE ──────────────────────────────────────
   {
-    id: 6, section: 'DATA', title: 'Dataset Scope',
+    id: 8, section: 'DATA', title: 'Dataset Scope',
     render: (active: boolean) => (
       <div className="h-full flex flex-col justify-center px-6 md:px-16">
         <Stagger delay={0} active={active}>
@@ -673,9 +741,9 @@ const SLIDES = [
     bg: 'bg-gradient-to-br from-slate-50 via-white to-purple-50',
   },
 
-  // ─── 7. METHODOLOGY — T-V FRAMEWORK ─────────────────────────
+  // ─── 9. METHODOLOGY — T-V FRAMEWORK ─────────────────────────
   {
-    id: 7, section: 'METHODOLOGY', title: 'T-V Framework',
+    id: 9, section: 'METHODOLOGY', title: 'T-V Framework',
     render: (active: boolean) => (
       <div className="h-full flex flex-col justify-center px-6 md:px-16">
         <Stagger delay={0} active={active}>
@@ -742,9 +810,9 @@ const SLIDES = [
     bg: 'bg-gradient-to-br from-slate-50 via-white to-green-50',
   },
 
-  // ─── 8. SEGMENTATION RESULTS ────────────────────────────────
+  // ─── 10. SEGMENTATION RESULTS ────────────────────────────────
   {
-    id: 8, section: 'RESULTS', title: 'Segmentation Results',
+    id: 10, section: 'RESULTS', title: 'Segmentation Results',
     render: (active: boolean) => (
       <div className="h-full flex flex-col justify-center px-6 md:px-16">
         <Stagger delay={0} active={active}>
@@ -810,9 +878,9 @@ const SLIDES = [
     bg: 'bg-gradient-to-br from-slate-50 via-white to-blue-50',
   },
 
-  // ─── 9. ANCHOR USERS AT RISK ────────────────────────────────
+  // ─── 11. ANCHOR USERS AT RISK ────────────────────────────────
   {
-    id: 9, section: 'RESULTS', title: 'Anchor Users at Risk',
+    id: 11, section: 'RESULTS', title: 'Anchor Users at Risk',
     render: (active: boolean) => (
       <div className="h-full flex flex-col justify-center px-6 md:px-16">
         <Stagger delay={0} active={active}>
@@ -848,9 +916,9 @@ const SLIDES = [
     bg: 'bg-gradient-to-br from-slate-50 via-white to-red-50',
   },
 
-  // ─── 10. KEY INSIGHTS ────────────────────────────────────────
+  // ─── 12. KEY INSIGHTS ────────────────────────────────────────
   {
-    id: 10, section: 'INSIGHTS', title: 'Key Insights',
+    id: 12, section: 'INSIGHTS', title: 'Key Insights',
     render: (active: boolean) => (
       <div className="h-full flex flex-col justify-center px-6 md:px-16">
         <Stagger delay={0} active={active}>
@@ -869,9 +937,9 @@ const SLIDES = [
     bg: 'bg-gradient-to-br from-slate-50 via-white to-green-50',
   },
 
-  // ─── 11. RECOMMENDATIONS ────────────────────────────────────
+  // ─── 13. RECOMMENDATIONS ────────────────────────────────────
   {
-    id: 11, section: 'RECOMMENDATIONS', title: 'Recommendations',
+    id: 13, section: 'RECOMMENDATIONS', title: 'Recommendations',
     render: (active: boolean) => (
       <div className="h-full flex flex-col justify-center px-6 md:px-16">
         <Stagger delay={0} active={active}>
@@ -887,74 +955,6 @@ const SLIDES = [
       </div>
     ),
     bg: 'bg-gradient-to-br from-slate-50 via-white to-purple-50',
-  },
-
-  // ─── 12. DISCLAIMER ─────────────────────────────────────────
-  {
-    id: 12, section: 'DISCLAIMER', title: 'Disclaimer',
-    render: (active: boolean) => (
-      <div className="flex flex-col items-center justify-center h-full text-center px-6 md:px-16">
-        <Stagger delay={0} active={active}>
-          <div className="bg-amber-50 rounded-2xl p-8 border border-amber-200 max-w-2xl hover:shadow-lg transition-shadow duration-300">
-            <div className="text-5xl mb-4 animate-bounce">⚠️</div>
-            <h2 className="text-2xl font-bold text-slate-900 mb-4">Important Disclaimer</h2>
-            <p className="text-slate-700 leading-relaxed">
-              The data provided is a representation of the original data which amount has been adjusted. The data used is <strong>NOT</strong> representation of original data, adjusted for educational purposes and does not reflect the actual business condition of the company.
-            </p>
-          </div>
-        </Stagger>
-      </div>
-    ),
-    bg: 'bg-gradient-to-br from-slate-50 via-white to-amber-50',
-  },
-
-  // ─── 13. EXECUTIVE SUMMARY ──────────────────────────────────
-  {
-    id: 13, section: 'SUMMARY', title: 'Executive Summary',
-    render: (active: boolean) => (
-      <div className="h-full flex flex-col justify-center px-6 md:px-16">
-        <Stagger delay={0} active={active}>
-          <p className="text-sm font-medium text-blue-600 tracking-widest uppercase mb-2">Executive Summary</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-5">Key Takeaways</h2>
-        </Stagger>
-        <div className="grid md:grid-cols-2 gap-4 mb-4">
-          <Stagger delay={100} active={active}>
-            <div className="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 h-full">
-              <h3 className="font-semibold text-lg text-slate-800 mb-3 flex items-center gap-2"><span className="text-xl">📊</span> What We Found</h3>
-              <ul className="space-y-2 text-sm text-slate-600">
-                <li className="flex items-start gap-2"><span className="text-green-500 mt-1">✓</span>All 20 users are active every day — engagement is not the problem</li>
-                <li className="flex items-start gap-2"><span className="text-red-500 mt-1">✗</span>18 of 20 users showed 25–32% volume decline Jan→Mar</li>
-                <li className="flex items-start gap-2"><span className="text-red-500 mt-1">✗</span>3 anchor users (59.9% revenue) are all declining</li>
-                <li className="flex items-start gap-2"><span className="text-blue-500 mt-1">→</span>Decline pattern is uniform — likely seasonal, not platform-driven</li>
-              </ul>
-            </div>
-          </Stagger>
-          <Stagger delay={200} active={active}>
-            <div className="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 h-full">
-              <h3 className="font-semibold text-lg text-slate-800 mb-3 flex items-center gap-2"><span className="text-xl">🎯</span> What We Recommend</h3>
-              <ul className="space-y-2 text-sm text-slate-600">
-                <li className="flex items-start gap-2"><span className="text-red-500 font-bold">P0</span>Protect 3 anchor users — personal AM calls within 24h</li>
-                <li className="flex items-start gap-2"><span className="text-amber-500 font-bold">P1</span>Stabilize 5 significant users — AM review within 1 week</li>
-                <li className="flex items-start gap-2"><span className="text-orange-500 font-bold">P2</span>Recover 10 emerging users — automated check-in + resources</li>
-                <li className="flex items-start gap-2"><span className="text-green-500 font-bold">P3</span>Watch 2 resilient users — low-touch maintenance</li>
-              </ul>
-            </div>
-          </Stagger>
-        </div>
-        <Stagger delay={350} active={active}>
-          <div className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl p-5 border border-blue-200 hover:shadow-md transition-shadow">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-semibold text-slate-800 mb-1">Expected Impact</p>
-                <p className="text-xs text-slate-600">Targeted outreach to 3 anchor users could protect <strong>59.9% of platform revenue</strong> from potential churn.</p>
-              </div>
-              <div className="text-4xl font-bold text-blue-600">59.9%</div>
-            </div>
-          </div>
-        </Stagger>
-      </div>
-    ),
-    bg: 'bg-gradient-to-br from-slate-50 via-white to-blue-50',
   },
 
   // ─── 14. CONTACT ────────────────────────────────────────────
