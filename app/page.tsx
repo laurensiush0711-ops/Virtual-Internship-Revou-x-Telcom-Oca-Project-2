@@ -708,12 +708,15 @@ const SLIDES = [
           </div>
         </Stagger>
 
-        {/* Conclusion */}
+        {/* Guideline */}
         <Stagger delay={400} active={active}>
-          <div className="bg-white rounded-2xl p-4 shadow-sm border border-slate-100 hover:shadow-md transition-shadow mt-5">
-            <div className="flex items-center gap-3">
-              <span className="text-xl">🔍</span>
-              <p className="text-sm text-slate-700"><strong>Conclusion:</strong> The uniform decline pattern (25–32% across 90% of users) strongly suggests an external factor — likely seasonality — rather than platform issues.</p>
+          <div className="bg-gradient-to-r from-orange-50 to-amber-50 rounded-2xl p-4 border border-orange-200 hover:shadow-md transition-shadow mt-5">
+            <div className="flex items-start gap-3">
+              <span className="text-xl flex-shrink-0 mt-0.5">📋</span>
+              <div>
+                <p className="text-sm font-semibold text-orange-800 mb-1">Guideline for This Project</p>
+                <p className="text-xs text-orange-700 leading-relaxed">This analysis uses the T-V (Trend-Volume) scoring framework to segment users into actionable groups. The root causes identified above inform the prioritization: seasonality-driven declines should not trigger immediate escalation — focus retention efforts on anchor users where revenue impact is highest.</p>
+              </div>
             </div>
           </div>
         </Stagger>
