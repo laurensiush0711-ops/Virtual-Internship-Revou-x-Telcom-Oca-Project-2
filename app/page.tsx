@@ -81,7 +81,7 @@ function FlipCard({ front, back, className = '' }: {
 function Tooltip({ children, text }: { children: React.ReactNode; text: string }) {
   const [show, setShow] = useState(false)
   return (
-    <div className="relative inline-block" onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)}>
+    <div className="relative block w-full" onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)}>
       {children}
       {show && (
         <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1.5 bg-slate-900 text-white text-xs rounded-lg whitespace-nowrap tooltip-arrow z-50 animate-entrance">
@@ -151,22 +151,23 @@ function BarChart({ data, active = true, maxVal }: {
 }) {
   const max = maxVal || Math.max(...data.map(d => d.value))
   return (
-    <div className="flex items-end gap-3 h-40">
+    <div className="flex items-end gap-3 h-48">
       {data.map((d, i) => (
-        <div key={i} className="flex-1 flex flex-col items-center gap-1 h-full">
-          <div className="flex-1 w-full flex items-end">
-            <Tooltip text={`${d.label}: ${d.value.toLocaleString()}`}>
-              <div
-                className="w-full rounded-t-lg transition-all duration-700 ease-out cursor-pointer hover:opacity-80"
-                style={{
-                  height: active ? `${(d.value / max) * 100}%` : '0%',
-                  backgroundColor: d.color,
-                  transitionDelay: `${i * 150}ms`,
-                }}
-              />
-            </Tooltip>
+        <div key={i} className="flex-1 flex flex-col items-center gap-2 h-full">
+          <div className="flex-1 w-full flex items-end justify-center">
+            <div
+              className="w-full rounded-t-lg transition-all duration-700 ease-out hover:opacity-80"
+              style={{
+                height: active ? `${(d.value / max) * 100}%` : '0%',
+                backgroundColor: d.color,
+                transitionDelay: `${i * 150}ms`,
+              }}
+            />
           </div>
-          <span className="text-[10px] text-slate-500 text-center leading-tight">{d.label}</span>
+          <div className="text-center">
+            <div className="text-xs font-semibold text-slate-700">{d.value.toLocaleString()}</div>
+            <div className="text-[10px] text-slate-500">{d.label}</div>
+          </div>
         </div>
       ))}
     </div>
