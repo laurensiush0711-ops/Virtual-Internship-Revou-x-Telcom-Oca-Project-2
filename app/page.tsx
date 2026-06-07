@@ -654,70 +654,51 @@ const SLIDES = [
       <div className="h-full flex flex-col justify-center px-6 md:px-16">
         <Stagger delay={0} active={active}>
           <p className="text-sm font-medium text-orange-600 tracking-widest uppercase mb-2">Root Cause Analysis</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">Why Are Users Declining?</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-5">Why Are Users Declining?</h2>
         </Stagger>
+
+        {/* Tree diagram */}
         <Stagger delay={100} active={active}>
-          <div className="flex flex-col items-center gap-0">
-            {/* Root node */}
-            <div className="bg-red-500 text-white rounded-2xl px-6 py-3 shadow-lg text-center font-semibold text-sm hover:scale-105 transition-transform">
-              Volume Decline<br /><span className="text-red-200 text-xs font-normal">18 of 20 users · 25–32% drop</span>
+          <div className="flex flex-col items-center">
+            {/* Root */}
+            <div className="bg-gradient-to-r from-red-500 to-red-600 text-white rounded-2xl px-8 py-4 shadow-lg text-center">
+              <div className="font-bold text-base">Volume Decline</div>
+              <div className="text-red-200 text-xs mt-0.5">18 of 20 users · 25–32% drop Jan→Mar</div>
             </div>
-            {/* Connector line down */}
-            <div className="w-0.5 h-5 bg-slate-300" />
-            {/* Horizontal connector */}
-            <div className="w-[60%] max-w-md h-0.5 bg-slate-300 relative">
-              <div className="absolute left-0 top-0 w-0.5 h-5 bg-slate-300" />
-              <div className="absolute left-1/2 top-0 w-0.5 h-5 bg-slate-300 -translate-x-1/2" />
-              <div className="absolute right-0 top-0 w-0.5 h-5 bg-slate-300" />
+
+            {/* Vertical line from root */}
+            <div className="w-px h-6 bg-slate-300" />
+
+            {/* Horizontal bar */}
+            <div className="w-2/3 max-w-xl h-px bg-slate-300" />
+
+            {/* Three branches */}
+            <div className="grid grid-cols-3 gap-6 w-2/3 max-w-xl mt-0">
+              {/* Branch connectors */}
+              {[0, 1, 2].map((i) => (
+                <div key={i} className="flex flex-col items-center">
+                  <div className="w-px h-6 bg-slate-300" />
+                </div>
+              ))}
             </div>
-            {/* Three main causes */}
-            <div className="grid grid-cols-3 gap-4 w-full max-w-2xl">
+
+            {/* Branch labels */}
+            <div className="grid grid-cols-3 gap-6 w-2/3 max-w-xl -mt-6">
               {[
-                {
-                  cause: 'Seasonality',
-                  color: 'amber',
-                  icon: '📅',
-                  detail: 'Post-New Year normalization + pre-Ramadan shift',
-                  leaves: ['January peak was campaign-driven', 'Uniform 25–32% decline across users'],
-                  delay: 200,
-                },
-                {
-                  cause: 'Campaign Wind-Down',
-                  color: 'blue',
-                  icon: '📊',
-                  detail: 'Q1 marketing push tapers off naturally',
-                  leaves: ['Volume follows campaign budget cycles', 'Decline is not sector-specific'],
-                  delay: 300,
-                },
-                {
-                  cause: 'Industry Concentration',
-                  color: 'green',
-                  icon: '🏢',
-                  detail: '2 users bucked the trend entirely',
-                  leaves: ['CV Jalan Mandiri (Travel) held steady', 'PT Edu Mandiri (Education) held steady'],
-                  delay: 400,
-                },
+                { icon: '📅', title: 'Seasonality', color: 'amber', items: ['January peak was campaign-driven', 'Post-New Year + pre-Ramadan shift'] },
+                { icon: '📊', title: 'Campaign Wind-Down', color: 'blue', items: ['Q1 marketing push tapers off', 'Volume follows budget cycles'] },
+                { icon: '🏢', title: 'Industry Outliers', color: 'green', items: ['CV Jalan Mandiri (Travel) held steady', 'PT Edu Mandiri (Education) held steady'] },
               ].map((branch) => (
-                <div key={branch.cause} className="flex flex-col items-center gap-0">
-                  {/* Connector into cause */}
-                  <div className="w-0.5 h-5 bg-slate-300" />
-                  {/* Cause node */}
-                  <div className={`bg-${branch.color}-100 border-2 border-${branch.color}-300 rounded-xl px-4 py-3 text-center hover:shadow-lg hover:scale-105 transition-all cursor-pointer w-full`}>
-                    <div className="text-2xl mb-1">{branch.icon}</div>
-                    <div className={`font-semibold text-sm text-${branch.color}-800`}>{branch.cause}</div>
-                    <div className={`text-xs text-${branch.color}-600 mt-1`}>{branch.detail}</div>
+                <div key={branch.title} className="flex flex-col items-center">
+                  <div className={`w-full bg-${branch.color}-50 border border-${branch.color}-200 rounded-xl p-3 text-center hover:shadow-md transition-shadow cursor-pointer`}>
+                    <div className="text-xl mb-1">{branch.icon}</div>
+                    <div className={`font-semibold text-sm text-${branch.color}-800`}>{branch.title}</div>
                   </div>
-                  {/* Connector to leaves */}
-                  <div className="w-0.5 h-4 bg-slate-200" />
-                  <div className="w-[80%] h-0.5 bg-slate-200 relative">
-                    <div className="absolute left-0 top-0 w-0.5 h-4 bg-slate-200" />
-                    <div className="absolute right-0 top-0 w-0.5 h-4 bg-slate-200" />
-                  </div>
-                  {/* Leaf nodes */}
-                  <div className="space-y-2 w-full">
-                    {branch.leaves.map((leaf) => (
-                      <div key={leaf} className={`bg-white border border-${branch.color}-100 rounded-lg px-3 py-2 text-xs text-slate-600 text-center hover:shadow-sm transition-shadow`}>
-                        {leaf}
+                  <div className="w-px h-4 bg-slate-200" />
+                  <div className="space-y-1.5 w-full">
+                    {branch.items.map((item) => (
+                      <div key={item} className={`bg-white border border-${branch.color}-100 rounded-lg px-3 py-2 text-[11px] text-slate-600 text-center hover:shadow-sm transition-shadow`}>
+                        {item}
                       </div>
                     ))}
                   </div>
@@ -726,11 +707,13 @@ const SLIDES = [
             </div>
           </div>
         </Stagger>
-        <Stagger delay={500} active={active}>
-          <div className="bg-white rounded-2xl p-4 shadow-sm border border-slate-100 hover:shadow-md transition-shadow mt-4">
+
+        {/* Conclusion */}
+        <Stagger delay={400} active={active}>
+          <div className="bg-white rounded-2xl p-4 shadow-sm border border-slate-100 hover:shadow-md transition-shadow mt-5">
             <div className="flex items-center gap-3">
-              <span className="text-2xl">🔍</span>
-              <p className="text-sm text-slate-700"><strong>Conclusion:</strong> The uniform decline pattern (25–32% across 90% of users) strongly suggests an external factor — likely seasonality — rather than platform issues or individual churn risk.</p>
+              <span className="text-xl">🔍</span>
+              <p className="text-sm text-slate-700"><strong>Conclusion:</strong> The uniform decline pattern (25–32% across 90% of users) strongly suggests an external factor — likely seasonality — rather than platform issues.</p>
             </div>
           </div>
         </Stagger>
