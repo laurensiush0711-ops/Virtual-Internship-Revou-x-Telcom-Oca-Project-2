@@ -1154,7 +1154,7 @@ export default function SlidePresentation() {
 
       {/* Disclaimer footer — every slide */}
       <div className="fixed bottom-14 left-0 right-0 z-30 text-center pointer-events-none">
-        <span className="text-[9px] text-slate-400 bg-white/60 backdrop-blur-sm px-3 py-1 rounded-full border border-slate-100">
+        <span className="text-[11px] text-slate-400 bg-white/60 backdrop-blur-sm px-3 py-1 rounded-full border border-slate-100">
           Data adjusted for educational purposes — not representative of actual business conditions
         </span>
       </div>
