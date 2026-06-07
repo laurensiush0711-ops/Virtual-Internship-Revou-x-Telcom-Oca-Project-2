@@ -469,43 +469,59 @@ const SLIDES = [
       <div className="h-full flex flex-col justify-center px-6 md:px-16">
         <Stagger delay={0} active={active}>
           <p className="text-sm font-medium text-blue-600 tracking-widest uppercase mb-2">Executive Summary</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-5">Key Takeaways</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-5">Overview</h2>
         </Stagger>
-        <div className="grid md:grid-cols-2 gap-4 mb-4">
+        <div className="space-y-4">
           <Stagger delay={100} active={active}>
-            <div className="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 h-full">
-              <h3 className="font-semibold text-lg text-slate-800 mb-3 flex items-center gap-2"><span className="text-xl">📊</span> What We Found</h3>
-              <ul className="space-y-2 text-sm text-slate-600">
-                <li className="flex items-start gap-2"><span className="text-green-500 mt-1">✓</span>All 20 users are active every day — engagement is not the problem</li>
-                <li className="flex items-start gap-2"><span className="text-red-500 mt-1">✗</span>18 of 20 users showed 25–32% volume decline Jan→Mar</li>
-                <li className="flex items-start gap-2"><span className="text-red-500 mt-1">✗</span>3 anchor users (59.9% revenue) are all declining</li>
-                <li className="flex items-start gap-2"><span className="text-blue-500 mt-1">→</span>Decline pattern is uniform — likely seasonal, not platform-driven</li>
-              </ul>
+            <div className="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+              <h3 className="font-semibold text-sm text-blue-700 uppercase tracking-wide mb-2">Project Background</h3>
+              <p className="text-sm text-slate-600 leading-relaxed">This project analyzes OCA Blast&apos;s active user behavior by segmenting 20 business clients using a rule-based Trend-Volume (T-V) scoring framework to identify churn risk and upsell opportunities across 4 messaging channels.</p>
+            </div>
+          </Stagger>
+          <Stagger delay={150} active={active}>
+            <div className="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+              <h3 className="font-semibold text-sm text-blue-700 uppercase tracking-wide mb-2">Objective</h3>
+              <p className="text-sm text-slate-600 leading-relaxed">Segment OCA&apos;s 20 users by behavior patterns using T-V scoring to identify churn risk and upsell opportunities, enabling targeted account management actions.</p>
             </div>
           </Stagger>
           <Stagger delay={200} active={active}>
-            <div className="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 h-full">
-              <h3 className="font-semibold text-lg text-slate-800 mb-3 flex items-center gap-2"><span className="text-xl">🎯</span> What We Recommend</h3>
-              <ul className="space-y-2 text-sm text-slate-600">
-                <li className="flex items-start gap-2"><span className="text-red-500 font-bold">P0</span>Protect 3 anchor users — personal AM calls within 24h</li>
-                <li className="flex items-start gap-2"><span className="text-amber-500 font-bold">P1</span>Stabilize 5 significant users — AM review within 1 week</li>
-                <li className="flex items-start gap-2"><span className="text-orange-500 font-bold">P2</span>Recover 10 emerging users — automated check-in + resources</li>
-                <li className="flex items-start gap-2"><span className="text-green-500 font-bold">P3</span>Watch 2 resilient users — low-touch maintenance</li>
+            <div className="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+              <h3 className="font-semibold text-sm text-blue-700 uppercase tracking-wide mb-2">Key Findings</h3>
+              <ul className="space-y-1.5 text-sm text-slate-600">
+                <li className="flex items-start gap-2"><span className="text-green-500 mt-0.5">✓</span>All 20 users are active every day (90/90 days) — engagement is not the problem</li>
+                <li className="flex items-start gap-2"><span className="text-red-500 mt-0.5">✗</span>18 of 20 users (90%) showed 25–32% volume decline Jan→Mar 2025</li>
+                <li className="flex items-start gap-2"><span className="text-red-500 mt-0.5">✗</span>3 anchor users represent 59.9% of platform revenue — all declining</li>
+                <li className="flex items-start gap-2"><span className="text-blue-500 mt-0.5">→</span>Decline is uniform across industries, suggesting seasonality rather than platform issues</li>
+              </ul>
+            </div>
+          </Stagger>
+          <Stagger delay={300} active={active}>
+            <div className="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+              <h3 className="font-semibold text-sm text-blue-700 uppercase tracking-wide mb-2">Tools &amp; Metrics</h3>
+              <div className="grid md:grid-cols-2 gap-3">
+                <div>
+                  <p className="text-xs font-medium text-slate-500 mb-1">Tools</p>
+                  <p className="text-sm text-slate-600">Python, Google Sheets, Tableau</p>
+                </div>
+                <div>
+                  <p className="text-xs font-medium text-slate-500 mb-1">Key Metrics</p>
+                  <p className="text-sm text-slate-600">Trend Score (T), Volume Score (V), Transaction Volume, Revenue Share, Active Days, Channel Mix</p>
+                </div>
+              </div>
+            </div>
+          </Stagger>
+          <Stagger delay={400} active={active}>
+            <div className="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+              <h3 className="font-semibold text-sm text-blue-700 uppercase tracking-wide mb-2">Recommendations</h3>
+              <ul className="space-y-1.5 text-sm text-slate-600">
+                <li className="flex items-start gap-2"><span className="text-red-500 font-bold text-xs">P0</span>Protect 3 anchor users (59.9% revenue) — personal AM calls within 24 hours</li>
+                <li className="flex items-start gap-2"><span className="text-amber-500 font-bold text-xs">P1</span>Stabilize 5 significant users (25.1% revenue) — AM review within 1 week</li>
+                <li className="flex items-start gap-2"><span className="text-orange-500 font-bold text-xs">P2</span>Recover 10 emerging users (12.5% revenue) — automated check-in + onboarding resources</li>
+                <li className="flex items-start gap-2"><span className="text-green-500 font-bold text-xs">P3</span>Watch 2 resilient users (2.5% revenue) — low-touch maintenance + product updates</li>
               </ul>
             </div>
           </Stagger>
         </div>
-        <Stagger delay={350} active={active}>
-          <div className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl p-5 border border-blue-200 hover:shadow-md transition-shadow">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-semibold text-slate-800 mb-1">Expected Impact</p>
-                <p className="text-xs text-slate-600">Targeted outreach to 3 anchor users could protect <strong>59.9% of platform revenue</strong> from potential churn.</p>
-              </div>
-              <div className="text-4xl font-bold text-blue-600">59.9%</div>
-            </div>
-          </div>
-        </Stagger>
       </div>
     ),
     bg: 'bg-gradient-to-br from-slate-50 via-white to-blue-50',
