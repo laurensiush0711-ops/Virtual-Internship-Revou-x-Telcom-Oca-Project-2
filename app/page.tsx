@@ -333,7 +333,7 @@ function TVMatrix({ active }: { active: boolean }) {
   ]
 
   return (
-    <div className="grid grid-cols-3 gap-2.5 max-w-lg mx-auto">
+    <div className="grid grid-cols-3 gap-1.5 max-w-sm mx-auto">
       {matrix.map((cell) => {
         const key = `${cell.t}-${cell.v}`
         const isHovered = hoveredCell === key
@@ -341,16 +341,16 @@ function TVMatrix({ active }: { active: boolean }) {
         return (
           <div
             key={key}
-            className={`rounded-xl border-2 p-4 text-center aspect-square flex flex-col items-center justify-center transition-all duration-300 cursor-pointer ${
+            className={`rounded-lg border p-2 text-center transition-all duration-300 cursor-pointer ${
               active ? cell.color : 'bg-slate-50 border-slate-200 text-slate-400'
-            } ${isHovered ? 'scale-105 shadow-lg ring-2 ring-blue-300' : ''} ${hasUsers && active ? 'hover:shadow-md' : 'opacity-40'}`}
+            } ${isHovered ? 'scale-105 shadow-md ring-2 ring-blue-300' : ''} ${hasUsers && active ? 'hover:shadow-sm' : 'opacity-40'}`}
             onMouseEnter={() => setHoveredCell(key)}
             onMouseLeave={() => setHoveredCell(null)}
           >
-            <div className="text-[10px] font-mono text-slate-400 mb-1">T={cell.t} V={cell.v}</div>
-            <div className="text-xs font-semibold">{cell.label}</div>
+            <div className="text-[9px] font-mono text-slate-400">T={cell.t} V={cell.v}</div>
+            <div className="text-[10px] font-semibold leading-tight">{cell.label}</div>
             {hasUsers && active && (
-              <div className="mt-1 text-xl font-bold">{cell.count}</div>
+              <div className="text-sm font-bold">{cell.count}</div>
             )}
           </div>
         )
@@ -854,9 +854,9 @@ const SLIDES = [
           </Stagger>
         </div>
         <Stagger delay={350} active={active}>
-          <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-            <div className="text-sm font-semibold text-slate-700 mb-1">Interactive Decision Matrix</div>
-            <div className="text-xs text-slate-400 mb-3">Hover cells to explore segment labels and user counts</div>
+          <div className="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+            <div className="text-sm font-semibold text-slate-700 mb-0.5">Interactive Decision Matrix</div>
+            <div className="text-[11px] text-slate-400 mb-2">Hover cells to explore segment labels and user counts</div>
             <TVMatrix active={active} />
           </div>
         </Stagger>
