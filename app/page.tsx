@@ -654,28 +654,80 @@ const SLIDES = [
       <div className="h-full flex flex-col justify-center px-6 md:px-16">
         <Stagger delay={0} active={active}>
           <p className="text-sm font-medium text-orange-600 tracking-widest uppercase mb-2">Root Cause Analysis</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-5">Why Are Users Declining?</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">Why Are Users Declining?</h2>
         </Stagger>
-        <div className="grid md:grid-cols-3 gap-4 mb-4">
-          {[
-            { icon: '📅', title: 'Seasonality', desc: 'Post-New Year normalization + pre-Ramadan shift. January peak was likely campaign-driven, not organic growth.', color: 'amber', delay: 100, evidence: 'All 20 users peaked in Jan, declined uniformly by 25–32%' },
-            { icon: '📊', title: 'Campaign Wind-Down', desc: 'Q1 marketing push in January tapers off naturally. Transaction volume follows campaign budget cycles.', color: 'blue', delay: 200, evidence: 'Decline is uniform across industries — not sector-specific' },
-            { icon: '🏢', title: 'Industry Concentration', desc: '2 users in Travel and Real Estate held steady. Their use cases may be less campaign-dependent.', color: 'green', delay: 300, evidence: 'CV Jalan Mandiri (Travel) and PT Edu Mandiri (Education) bucked the trend' },
-          ].map((item) => (
-            <Stagger key={item.title} delay={item.delay} active={active}>
-              <div className="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 h-full">
-                <div className="text-3xl mb-3">{item.icon}</div>
-                <h3 className="font-semibold text-lg text-slate-800 mb-2">{item.title}</h3>
-                <p className="text-sm text-slate-600 mb-3">{item.desc}</p>
-                <div className="bg-amber-50 rounded-xl p-3 border border-amber-100">
-                  <p className="text-xs text-amber-700"><strong>Evidence:</strong> {item.evidence}</p>
+        <Stagger delay={100} active={active}>
+          <div className="flex flex-col items-center gap-0">
+            {/* Root node */}
+            <div className="bg-red-500 text-white rounded-2xl px-6 py-3 shadow-lg text-center font-semibold text-sm hover:scale-105 transition-transform">
+              Volume Decline<br /><span className="text-red-200 text-xs font-normal">18 of 20 users · 25–32% drop</span>
+            </div>
+            {/* Connector line down */}
+            <div className="w-0.5 h-5 bg-slate-300" />
+            {/* Horizontal connector */}
+            <div className="w-[60%] max-w-md h-0.5 bg-slate-300 relative">
+              <div className="absolute left-0 top-0 w-0.5 h-5 bg-slate-300" />
+              <div className="absolute left-1/2 top-0 w-0.5 h-5 bg-slate-300 -translate-x-1/2" />
+              <div className="absolute right-0 top-0 w-0.5 h-5 bg-slate-300" />
+            </div>
+            {/* Three main causes */}
+            <div className="grid grid-cols-3 gap-4 w-full max-w-2xl">
+              {[
+                {
+                  cause: 'Seasonality',
+                  color: 'amber',
+                  icon: '📅',
+                  detail: 'Post-New Year normalization + pre-Ramadan shift',
+                  leaves: ['January peak was campaign-driven', 'Uniform 25–32% decline across users'],
+                  delay: 200,
+                },
+                {
+                  cause: 'Campaign Wind-Down',
+                  color: 'blue',
+                  icon: '📊',
+                  detail: 'Q1 marketing push tapers off naturally',
+                  leaves: ['Volume follows campaign budget cycles', 'Decline is not sector-specific'],
+                  delay: 300,
+                },
+                {
+                  cause: 'Industry Concentration',
+                  color: 'green',
+                  icon: '🏢',
+                  detail: '2 users bucked the trend entirely',
+                  leaves: ['CV Jalan Mandiri (Travel) held steady', 'PT Edu Mandiri (Education) held steady'],
+                  delay: 400,
+                },
+              ].map((branch) => (
+                <div key={branch.cause} className="flex flex-col items-center gap-0">
+                  {/* Connector into cause */}
+                  <div className="w-0.5 h-5 bg-slate-300" />
+                  {/* Cause node */}
+                  <div className={`bg-${branch.color}-100 border-2 border-${branch.color}-300 rounded-xl px-4 py-3 text-center hover:shadow-lg hover:scale-105 transition-all cursor-pointer w-full`}>
+                    <div className="text-2xl mb-1">{branch.icon}</div>
+                    <div className={`font-semibold text-sm text-${branch.color}-800`}>{branch.cause}</div>
+                    <div className={`text-xs text-${branch.color}-600 mt-1`}>{branch.detail}</div>
+                  </div>
+                  {/* Connector to leaves */}
+                  <div className="w-0.5 h-4 bg-slate-200" />
+                  <div className="w-[80%] h-0.5 bg-slate-200 relative">
+                    <div className="absolute left-0 top-0 w-0.5 h-4 bg-slate-200" />
+                    <div className="absolute right-0 top-0 w-0.5 h-4 bg-slate-200" />
+                  </div>
+                  {/* Leaf nodes */}
+                  <div className="space-y-2 w-full">
+                    {branch.leaves.map((leaf) => (
+                      <div key={leaf} className={`bg-white border border-${branch.color}-100 rounded-lg px-3 py-2 text-xs text-slate-600 text-center hover:shadow-sm transition-shadow`}>
+                        {leaf}
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </Stagger>
-          ))}
-        </div>
-        <Stagger delay={400} active={active}>
-          <div className="bg-white rounded-2xl p-4 shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+              ))}
+            </div>
+          </div>
+        </Stagger>
+        <Stagger delay={500} active={active}>
+          <div className="bg-white rounded-2xl p-4 shadow-sm border border-slate-100 hover:shadow-md transition-shadow mt-4">
             <div className="flex items-center gap-3">
               <span className="text-2xl">🔍</span>
               <p className="text-sm text-slate-700"><strong>Conclusion:</strong> The uniform decline pattern (25–32% across 90% of users) strongly suggests an external factor — likely seasonality — rather than platform issues or individual churn risk.</p>
