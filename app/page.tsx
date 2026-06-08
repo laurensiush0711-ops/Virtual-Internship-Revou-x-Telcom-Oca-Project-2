@@ -1064,10 +1064,17 @@ export default function SlidePresentation() {
 
   const filtered = section === 'ALL' ? SLIDES : SLIDES.filter((s) => s.section === section)
 
-  // Read hash on mount to jump to specific slide
+  // Read hash or query param on mount to jump to specific slide
   useEffect(() => {
-    const hash = window.location.hash.replace('#slide-', '')
-    const idx = parseInt(hash) - 1
+    const params = new URLSearchParams(window.location.search)
+    const querySlide = params.get('slide')
+    let idx = -1
+    if (querySlide) {
+      idx = parseInt(querySlide) - 1
+    } else {
+      const hash = window.location.hash.replace('#slide-', '')
+      idx = parseInt(hash) - 1
+    }
     if (!isNaN(idx) && idx >= 0 && idx < filtered.length) {
       setCurrent(idx)
     }
@@ -1082,7 +1089,7 @@ export default function SlidePresentation() {
     setTimeout(() => {
       setCurrent(idx)
       setTransitioning(false)
-      window.history.replaceState(null, '', `#slide-${idx + 1}`)
+      window.history.replaceState(null, '', `?slide=${idx + 1}#slide-${idx + 1}`)
       requestAnimationFrame(() => setSlideActive(true))
     }, 250)
   }, [current, transitioning])
