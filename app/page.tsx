@@ -151,9 +151,9 @@ function BarChart({ data, active = true, maxVal }: {
 }) {
   const max = maxVal || Math.max(...data.map(d => d.value))
   return (
-    <div className="flex items-end gap-3 h-48">
+    <div className="flex items-end gap-2 sm:gap-3 h-40 sm:h-48">
       {data.map((d, i) => (
-        <div key={i} className="flex-1 flex flex-col items-center gap-2 h-full">
+        <div key={i} className="flex-1 min-w-0 flex flex-col items-center gap-1 sm:gap-2 h-full">
           <div className="flex-1 w-full flex items-end justify-center">
             <div
               className="w-full rounded-t-lg transition-all duration-700 ease-out hover:opacity-80"
@@ -333,7 +333,7 @@ function TVMatrix({ active }: { active: boolean }) {
   ]
 
   return (
-    <div className="grid grid-cols-3 gap-1.5 max-w-sm mx-auto">
+    <div className="grid grid-cols-3 gap-1 sm:gap-1.5 max-w-xs sm:max-w-sm mx-auto">
       {matrix.map((cell) => {
         const key = `${cell.t}-${cell.v}`
         const isHovered = hoveredCell === key
@@ -448,7 +448,7 @@ const SLIDES = [
   {
     id: 2, section: 'DISCLAIMER', title: 'Disclaimer',
     render: (active: boolean) => (
-      <div className="flex flex-col items-center justify-center h-full text-center px-6 md:px-16">
+      <div className="flex flex-col items-center justify-center h-full text-center px-4 md:px-16">
         <Stagger delay={0} active={active}>
           <div className="bg-amber-50 rounded-2xl p-8 border border-amber-200 max-w-2xl hover:shadow-lg transition-shadow duration-300">
             <div className="text-5xl mb-4 animate-bounce">⚠️</div>
@@ -467,7 +467,7 @@ const SLIDES = [
   {
     id: 3, section: 'SUMMARY', title: 'Executive Summary',
     render: (active: boolean) => (
-      <div className="h-full flex flex-col justify-center px-6 md:px-16">
+      <div className="h-full flex flex-col justify-center px-4 md:px-16">
         <Stagger delay={0} active={active}>
           <p className="text-sm font-medium text-blue-600 tracking-widest uppercase mb-2">Executive Summary</p>
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-5">Overview</h2>
@@ -532,7 +532,7 @@ const SLIDES = [
   {
     id: 4, section: 'CONTEXT', title: 'Business Background',
     render: (active: boolean) => (
-      <div className="h-full flex flex-col justify-center px-6 md:px-16">
+      <div className="h-full flex flex-col justify-center px-4 md:px-16">
         <Stagger delay={0} active={active}>
           <p className="text-sm font-medium text-blue-600 tracking-widest uppercase mb-2">Business Background</p>
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">What is OCA Blast?</h2>
@@ -585,7 +585,7 @@ const SLIDES = [
   {
     id: 5, section: 'PROBLEM', title: 'Business Problem',
     render: (active: boolean) => (
-      <div className="h-full flex flex-col justify-center px-6 md:px-16">
+      <div className="h-full flex flex-col justify-center px-4 md:px-16">
         <Stagger delay={0} active={active}>
           <p className="text-sm font-medium text-red-600 tracking-widest uppercase mb-2">Business Problem</p>
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-5">Why This Analysis Matters</h2>
@@ -622,7 +622,7 @@ const SLIDES = [
   {
     id: 6, section: 'OBJECTIVES', title: 'Analysis Objectives',
     render: (active: boolean) => (
-      <div className="h-full flex flex-col justify-center px-6 md:px-16">
+      <div className="h-full flex flex-col justify-center px-4 md:px-16">
         <Stagger delay={0} active={active}>
           <p className="text-sm font-medium text-indigo-600 tracking-widest uppercase mb-2">Analysis Objectives</p>
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">What This Analysis Supports</h2>
@@ -652,7 +652,7 @@ const SLIDES = [
   {
     id: 7, section: 'ANALYSIS', title: 'Root Cause Analysis',
     render: (active: boolean) => (
-      <div className="h-full flex flex-col justify-center px-6 md:px-16">
+      <div className="h-full flex flex-col justify-center px-4 md:px-16">
         <Stagger delay={0} active={active}>
           <p className="text-sm font-medium text-orange-600 tracking-widest uppercase mb-2">Root Cause Analysis</p>
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-5">Why Are Users Declining?</h2>
@@ -730,7 +730,7 @@ const SLIDES = [
   {
     id: 8, section: 'DATA', title: 'Dataset Scope',
     render: (active: boolean) => (
-      <div className="h-full flex flex-col justify-center px-6 md:px-16">
+      <div className="h-full flex flex-col justify-center px-4 md:px-16">
         <Stagger delay={0} active={active}>
           <p className="text-sm font-medium text-purple-600 tracking-widest uppercase mb-2">Dataset Scope</p>
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-5">Data Overview</h2>
@@ -800,7 +800,7 @@ const SLIDES = [
   {
     id: 9, section: 'METHODOLOGY', title: 'T-V Framework',
     render: (active: boolean) => (
-      <div className="h-full flex flex-col justify-center px-6 md:px-16">
+      <div className="h-full flex flex-col justify-center px-4 md:px-16">
         <Stagger delay={0} active={active}>
           <p className="text-sm font-medium text-green-600 tracking-widest uppercase mb-2">Methodology</p>
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-5">The T-V Scoring Framework</h2>
@@ -869,7 +869,7 @@ const SLIDES = [
   {
     id: 10, section: 'RESULTS', title: 'Segmentation Results',
     render: (active: boolean) => (
-      <div className="h-full flex flex-col justify-center px-6 md:px-16">
+      <div className="h-full flex flex-col justify-center px-4 md:px-16">
         <Stagger delay={0} active={active}>
           <p className="text-sm font-medium text-blue-600 tracking-widest uppercase mb-2">Segmentation Results</p>
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Q1 2025 Segment Distribution</h2>
@@ -937,7 +937,7 @@ const SLIDES = [
   {
     id: 11, section: 'RESULTS', title: 'Anchor Users at Risk',
     render: (active: boolean) => (
-      <div className="h-full flex flex-col justify-center px-6 md:px-16">
+      <div className="h-full flex flex-col justify-center px-4 md:px-16">
         <Stagger delay={0} active={active}>
           <p className="text-sm font-medium text-red-600 tracking-widest uppercase mb-2">Critical Finding</p>
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Anchor Users at Risk</h2>
@@ -975,7 +975,7 @@ const SLIDES = [
   {
     id: 12, section: 'INSIGHTS', title: 'Key Insights',
     render: (active: boolean) => (
-      <div className="h-full flex flex-col justify-center px-6 md:px-16">
+      <div className="h-full flex flex-col justify-center px-4 md:px-16">
         <Stagger delay={0} active={active}>
           <p className="text-sm font-medium text-green-600 tracking-widest uppercase mb-2">Insights</p>
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-5">Key Findings <span className="text-base font-normal text-slate-400">(click to expand)</span></h2>
@@ -996,7 +996,7 @@ const SLIDES = [
   {
     id: 13, section: 'RECOMMENDATIONS', title: 'Recommendations',
     render: (active: boolean) => (
-      <div className="h-full flex flex-col justify-center px-6 md:px-16">
+      <div className="h-full flex flex-col justify-center px-4 md:px-16">
         <Stagger delay={0} active={active}>
           <p className="text-sm font-medium text-purple-600 tracking-widest uppercase mb-2">Recommendations</p>
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-5">Action Plan by Segment <span className="text-base font-normal text-slate-400">(click to expand)</span></h2>
@@ -1016,7 +1016,7 @@ const SLIDES = [
   {
     id: 14, section: 'CONTACT', title: 'Contact',
     render: (active: boolean) => (
-      <div className="flex flex-col items-center justify-center h-full text-center px-6 md:px-16">
+      <div className="flex flex-col items-center justify-center h-full text-center px-4 md:px-16">
         <Stagger delay={0} active={active}>
           <p className="text-sm font-medium text-blue-600 tracking-widest uppercase mb-3">Get in Touch</p>
         </Stagger>
@@ -1064,6 +1064,16 @@ export default function SlidePresentation() {
 
   const filtered = section === 'ALL' ? SLIDES : SLIDES.filter((s) => s.section === section)
 
+  // Read hash on mount to jump to specific slide
+  useEffect(() => {
+    const hash = window.location.hash.replace('#slide-', '')
+    const idx = parseInt(hash) - 1
+    if (!isNaN(idx) && idx >= 0 && idx < filtered.length) {
+      setCurrent(idx)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   const go = useCallback((idx: number, dir: 'left' | 'right') => {
     if (transitioning || idx === current) return
     setDirection(dir)
@@ -1072,7 +1082,7 @@ export default function SlidePresentation() {
     setTimeout(() => {
       setCurrent(idx)
       setTransitioning(false)
-      // Small delay then activate entrance animations
+      window.history.replaceState(null, '', `#slide-${idx + 1}`)
       requestAnimationFrame(() => setSlideActive(true))
     }, 250)
   }, [current, transitioning])
@@ -1197,6 +1207,16 @@ export default function SlidePresentation() {
           Data adjusted for educational purposes — not representative of actual business conditions
         </span>
       </div>
+
+      {/* Copy Link button */}
+      <button
+        onClick={() => {
+          navigator.clipboard.writeText(`${window.location.origin}#slide-${current + 1}`)
+        }}
+        className="fixed bottom-16 left-5 z-30 text-[11px] text-slate-400 bg-white/60 backdrop-blur-sm px-3 py-1 rounded-full border border-slate-100 hover:bg-white hover:text-slate-600 transition-all cursor-pointer"
+      >
+        📋 Copy Link
+      </button>
 
       {/* Keyboard hints */}
       <div className="fixed bottom-16 right-5 z-30 text-[11px] text-slate-400 space-y-0.5 bg-white/60 backdrop-blur-sm rounded-lg px-3 py-2">
