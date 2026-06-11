@@ -161,7 +161,7 @@ function StackedBarChart({ segments, active = true }: {
           const left = accumulated
           accumulated += pct
           return (
-            <Tooltip key={i} text={`${seg.label}: ${seg.value} users (${pct.toFixed(1)}%)`}>
+            <Tooltip key={i} text={`${seg.label}: ${seg.value}% revenue`}>
               <div
                 className="h-full transition-all duration-1000 ease-out hover:opacity-80 cursor-pointer relative group"
                 style={{
@@ -186,13 +186,13 @@ function StackedBarChart({ segments, active = true }: {
           <div key={i} className="flex items-center gap-1.5 text-xs text-slate-600">
             <span className="w-3 h-3 rounded-sm flex-shrink-0" style={{ backgroundColor: seg.color }} />
             <span className="font-medium">{seg.label}</span>
-            <span className="text-slate-400">({seg.value} users · {((seg.value / total) * 100).toFixed(1)}%)</span>
+            <span className="text-slate-400">({seg.value}%)</span>
           </div>
         ))}
       </div>
       {/* Total label */}
       <div className="text-center mt-2">
-        <span className="text-sm font-semibold text-slate-700">Total: {total} users</span>
+        <span className="text-sm font-semibold text-slate-700">Total: {total}%</span>
       </div>
     </div>
   )
@@ -1097,10 +1097,10 @@ const SLIDES = [
             <StackedBarChart
               active={active}
               segments={[
-                { label: 'Anchor at Risk', value: 3, color: '#ef4444' },
-                { label: 'Significant at Risk', value: 5, color: '#f59e0b' },
-                { label: 'Emerging at Risk', value: 10, color: '#f97316' },
-                { label: 'Resilient', value: 2, color: '#14b8a6' },
+                { label: 'Anchor at Risk', value: 59.9, color: '#ef4444' },
+                { label: 'Significant at Risk', value: 25.1, color: '#f59e0b' },
+                { label: 'Emerging at Risk', value: 12.5, color: '#f97316' },
+                { label: 'Resilient', value: 2.5, color: '#14b8a6' },
               ]}
             />
           </div>
